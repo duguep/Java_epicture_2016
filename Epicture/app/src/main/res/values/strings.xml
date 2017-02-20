@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Epicture</string>
+    <string name="logo_description">Epitech Logo</string>
+
+    <string name="login_button_title">Login to Imgur/Flickr</string>
+    <string name="login_imgur">Login with an Imgur account</string>
+    <string name="login_flickr">Login with a Flickr account</string>
+    <string name="login_dialog_title">Chose your login platform</string>
+    <string name="login_confirm">Login</string>
+    <string name="login_cancel">Cancel</string>
+
 </resources>
