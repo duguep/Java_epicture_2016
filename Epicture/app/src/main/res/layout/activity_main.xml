@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.epitech.epicture.MainActivity"
+    tools:context="com.epitech.epicture.Activity.MainActivity"
     android:background="@color/turquoise"
     android:orientation="vertical"
     >
