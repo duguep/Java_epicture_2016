@@ -27,7 +27,7 @@
                 android:drawablePadding="5dp"
                 android:onClick="pickImage"
                 android:text="@string/pick_image"
-                android:background="@drawable/imgur_button"
+                android:background="@drawable/imgur_upload"
                 android:textColor="@color/imgur_grey"
                 />
 

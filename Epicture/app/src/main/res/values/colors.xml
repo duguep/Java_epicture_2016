@@ -5,6 +5,7 @@
     <color name="colorAccent">#FF4081</color>
     <color name="turquoise">#088DA5</color>
     <color name="imgur_grey">#525560</color>
+    <color name="dark_grey">#343434</color>
     <color name="clear_grey">#CCCCCC</color>
     <color name="white">#FFFFFF</color>
 </resources>

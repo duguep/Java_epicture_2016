@@ -6,45 +6,53 @@
     android:layout_height="match_parent"
     tools:context="com.epitech.epicture.Activity.ImgurManagementActivity"
     android:orientation="vertical"
-    android:background="@color/imgur_grey"
-    >
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="25dp"
-        />
+    android:background="@color/imgur_grey">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        >
         <ImageView
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:src="@drawable/imgur_icon"
             android:contentDescription="@string/logo_description"
-            android:layout_marginStart="90dp"
             />
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="100dp"
             android:src="@drawable/imgur_logo"
             android:contentDescription="@string/logo_description"
-            android:layout_marginStart="75dp"
+            />
+        <Button
+            android:id="@+id/upload_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/imgur_button"
+            android:onClick="uploadImage"
             />
     </RelativeLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        />
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/imgur_button"
-            android:text="@string/imgur_upload"
-            android:textColor="@color/imgur_grey"
-            android:onClick="uploadImage"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
+        >
+        <GridView
+            android:id="@+id/gallery"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:columnWidth="90dp"
+            android:verticalSpacing="10dp"
+            android:horizontalSpacing="10dp"
+            android:gravity="center"
+            android:stretchMode="columnWidth"
+            android:numColumns="auto_fit"
             />
     </RelativeLayout>
 </LinearLayout>
