@@ -28,6 +28,8 @@ public class ImgurAuthorization {
 
     private static ImgurAuthorization INSTANCE;
 
+    private static String username;
+
     private ImgurAuthorization() {}
 
     public static ImgurAuthorization getInstance() {
@@ -130,6 +132,7 @@ public class ImgurAuthorization {
         long expiresIn          = root.getLong("expires_in");
         String tokenType        = root.getString("token_type");
         String accountUsername  = root.getString("account_username");
+        username = accountUsername;
 
         context.getSharedPreferences(PREF_NAME, 0)
                 .edit()
@@ -139,6 +142,10 @@ public class ImgurAuthorization {
                 .putString("token_type", tokenType)
                 .putString("account_username", accountUsername)
                 .apply();
+    }
+
+    public static String getUsername() {
+        return username;
     }
 
 }
