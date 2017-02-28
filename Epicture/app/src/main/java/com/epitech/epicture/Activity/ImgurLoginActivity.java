@@ -1,8 +1,10 @@
 package com.epitech.epicture.Activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
@@ -10,6 +12,7 @@ import android.widget.Toast;
 
 import com.epitech.epicture.AppConstants;
 import com.epitech.epicture.R;
+import com.epitech.epicture.TokenManipulation.ImgurAuthorization;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -30,7 +33,7 @@ public class ImgurLoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_imgur_login);
 
         Context context = getApplicationContext();
-        context.getSharedPreferences("com.epitech.imgurtest", Context.MODE_PRIVATE)
+        context.getSharedPreferences("com.epitech.epicture", Context.MODE_PRIVATE)
                 .edit()
                 .apply();
 
@@ -67,12 +70,15 @@ public class ImgurLoginActivity extends AppCompatActivity {
                     m.find();
                     long expiresIn = Long.valueOf(m.group(1));
 
-                    saveRefreshToken(refreshToken, accessToken, expiresIn);
+                    ImgurAuthorization.saveRefreshToken(getApplicationContext(), refreshToken, accessToken, expiresIn);
 
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             Toast.makeText(ImgurLoginActivity.this, "Logged in", Toast.LENGTH_SHORT).show();
+                            Intent i = new Intent();
+                            setResult(RESULT_OK, i);
+                            Log.i(TAG, "Finishing login");
                             finish();
                         }
                     });
@@ -80,16 +86,6 @@ public class ImgurLoginActivity extends AppCompatActivity {
                 return tokensURL;
             }
         });
-    }
-
-    public void saveRefreshToken(String refreshToken, String accessToken, long expiresIn) {
-        Context context = getApplicationContext();
-        context.getSharedPreferences("com.epitech.imgurtest", Context.MODE_PRIVATE)
-                .edit()
-                .putString("access_token", accessToken)
-                .putString("refresh_token", refreshToken)
-                .putLong("expires_in", expiresIn)
-                .apply();
     }
 
 }

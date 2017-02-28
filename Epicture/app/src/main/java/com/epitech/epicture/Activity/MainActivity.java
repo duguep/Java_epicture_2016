@@ -14,6 +14,7 @@ import com.epitech.epicture.R;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
+    private static final int IMGUR_LOGIN_REQUEST_CODE = 993;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
                         Integer selectedPosition = (Integer)lv.getTag();
                         if (selectedPosition == 0) {
                             Log.i(TAG, "Starting Imgur Login");
-                            startActivity(new Intent(MainActivity.this, ImgurLoginActivity.class));
+                            startActivityForResult(new Intent(MainActivity.this, ImgurLoginActivity.class), IMGUR_LOGIN_REQUEST_CODE);
                         }
                         else if (selectedPosition == 1) {
                             Log.i(TAG, "Starting Flickr Login");
@@ -59,6 +60,21 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .show();
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case IMGUR_LOGIN_REQUEST_CODE:
+                if (resultCode == RESULT_OK) {
+                    Log.i(TAG, "OnActivityResult");
+                    startActivity(new Intent(MainActivity.this, ImgurActivity.class));
+                }
+                break;
+            default:
+                break;
+        }
     }
 
     private String findStringById(int id) {
