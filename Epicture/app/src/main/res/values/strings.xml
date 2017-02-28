@@ -8,6 +8,8 @@
     <string name="login_dialog_title">Chose your login platform</string>
     <string name="login_confirm">Login</string>
     <string name="login_cancel">Cancel</string>
+    <string name="imgur_description">Imgur Logo</string>
+    <string name="imgur_upload">Upload Image on Imgur</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>

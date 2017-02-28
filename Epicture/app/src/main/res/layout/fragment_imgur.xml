@@ -3,7 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="8dp" >
+    android:padding="8dp"
+    android:background="@color/imgur_grey"
+    >
 
     <ScrollView
         android:layout_width="match_parent"
@@ -24,7 +26,10 @@
                 android:drawableLeft="@drawable/collections_collection_holo_dark"
                 android:drawablePadding="5dp"
                 android:onClick="pickImage"
-                android:text="@string/pick_image" />
+                android:text="@string/pick_image"
+                android:background="@drawable/imgur_button"
+                android:textColor="@color/imgur_grey"
+                />
 
             <TextView
                 android:id="@+id/choose_image_upload_status"

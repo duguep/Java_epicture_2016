@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
             case IMGUR_LOGIN_REQUEST_CODE:
                 if (resultCode == RESULT_OK) {
                     Log.i(TAG, "OnActivityResult");
-                    startActivity(new Intent(MainActivity.this, ImgurActivity.class));
+                    startActivity(new Intent(MainActivity.this, ImgurManagementActivity.class));
                 }
                 break;
             default:

@@ -21,7 +21,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activity.ImgurLoginActivity" />
-        <activity android:name=".Activity.ImgurActivity"></activity>
+        <activity android:name=".Activity.ImgurUploadActivity" />
+        <activity android:name=".Activity.ImgurManagementActivity"></activity>
     </application>
 
 </manifest>

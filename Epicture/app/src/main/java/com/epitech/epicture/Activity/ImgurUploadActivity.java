@@ -12,9 +12,9 @@ import com.epitech.epicture.ChooseImageFragment;
 import com.epitech.epicture.R;
 import com.epitech.epicture.RefreshAccessTokenTask;
 
-public class ImgurActivity extends AppCompatActivity {
+public class ImgurUploadActivity extends AppCompatActivity {
 
-    private static final String TAG = ImgurActivity.class.getSimpleName();
+    private static final String TAG = ImgurUploadActivity.class.getSimpleName();
 
     private static final int REQ_CODE_PICK_IMAGE = 577;
 
