@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.epitech.epicture.R;
 
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         items[0] = findStringById(R.string.login_imgur);
         items[1] = findStringById(R.string.login_flickr);
         new AlertDialog.Builder(this)
-                .setSingleChoiceItems(items, -1, new DialogInterface.OnClickListener() {
+                .setSingleChoiceItems(items, 0, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         ListView lv = ((AlertDialog)dialog).getListView();
                         lv.setTag(which);
@@ -38,16 +39,18 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                         ListView lv = ((AlertDialog)dialog).getListView();
-                        Integer selectedPosition = (Integer)lv.getTag();
+                        int selectedPosition;
+                        try {
+                            selectedPosition = (int) lv.getTag();
+                        } catch (NullPointerException exception) {
+                            selectedPosition = 0;
+                        }
                         if (selectedPosition == 0) {
                             Log.i(TAG, "Starting Imgur Login");
                             startActivityForResult(new Intent(MainActivity.this, ImgurLoginActivity.class), IMGUR_LOGIN_REQUEST_CODE);
                         }
                         else if (selectedPosition == 1) {
                             Log.i(TAG, "Starting Flickr Login");
-                        }
-                        else {
-                            Log.i(TAG, "Selected index : " + String.valueOf(selectedPosition));
                         }
                     }
                 })
@@ -68,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
         switch (requestCode) {
             case IMGUR_LOGIN_REQUEST_CODE:
                 if (resultCode == RESULT_OK) {
-                    Log.i(TAG, "OnActivityResult");
                     startActivity(new Intent(MainActivity.this, ImgurManagementActivity.class));
                 }
                 break;

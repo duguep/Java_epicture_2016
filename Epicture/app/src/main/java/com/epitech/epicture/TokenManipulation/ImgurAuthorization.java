@@ -28,7 +28,7 @@ public class ImgurAuthorization {
 
     private static ImgurAuthorization INSTANCE;
 
-    private static String username;
+    private static String mUsername;
 
     private ImgurAuthorization() {}
 
@@ -38,13 +38,14 @@ public class ImgurAuthorization {
         return INSTANCE;
     }
 
-    public static void saveRefreshToken(Context context, String refreshToken, String accessToken, long expiresIn) {
+    public static void saveRefreshToken(Context context, String refreshToken, String accessToken, long expiresIn, String username) {
         context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
                 .edit()
                 .putString("access_token", accessToken)
                 .putString("refresh_token", refreshToken)
                 .putLong("expires_in", expiresIn)
                 .apply();
+        mUsername = username;
     }
 
     public void addToHttpURLConnection(Context context, HttpURLConnection conn) {
@@ -132,7 +133,7 @@ public class ImgurAuthorization {
         long expiresIn          = root.getLong("expires_in");
         String tokenType        = root.getString("token_type");
         String accountUsername  = root.getString("account_username");
-        username = accountUsername;
+        mUsername = accountUsername;
 
         context.getSharedPreferences(PREF_NAME, 0)
                 .edit()
@@ -144,8 +145,8 @@ public class ImgurAuthorization {
                 .apply();
     }
 
-    public static String getUsername() {
-        return username;
+    public static String getmUsername() {
+        return mUsername;
     }
 
 }

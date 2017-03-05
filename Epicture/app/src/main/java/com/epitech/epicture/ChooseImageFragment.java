@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.ClipboardManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class ChooseImageFragment extends Fragment {
+
+    private static final String TAG = ChooseImageFragment.class.getSimpleName();
 
     private Bitmap mImagePreviewBitmap;
     private Uri mImageUri;
@@ -86,7 +89,7 @@ public class ChooseImageFragment extends Fragment {
             mImgurUploadTask = null;
             if (imageId != null) {
                 mImgurUrl = "http://imgur.com/" + imageId;
-                setImgurUploadStatus(R.string.choose_image_upload_status_success);
+                Log.i(TAG, "imgurUrl = " + mImgurUrl);
                 if (isResumed()) {
                     getView().findViewById(R.id.imgur_link_layout).setVisibility(View.VISIBLE);
                     ((TextView) getView().findViewById(R.id.link_url)).setText(mImgurUrl);

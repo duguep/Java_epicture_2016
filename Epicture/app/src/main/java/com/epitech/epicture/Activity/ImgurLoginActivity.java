@@ -24,6 +24,7 @@ public class ImgurLoginActivity extends AppCompatActivity {
     private static final Pattern accessTokenPattern = Pattern.compile("access_token=([^&]*)");
     private static final Pattern refreshTokenPattern = Pattern.compile("refresh_token=([^&]*)");
     private static final Pattern expiresInPattern = Pattern.compile("expires_in=(\\d+)");
+    private static final Pattern usernamePattern = Pattern.compile("account_username=([^&]*)");
 
     private WebView mWebView;
 
@@ -44,7 +45,7 @@ public class ImgurLoginActivity extends AppCompatActivity {
 
         setupWebView();
 
-        mWebView.loadUrl("https://api.imgur.com/oauth2/authorize?client_id=" + AppConstants.IMGUR_CLIENT_ID + "&response_type=token");
+            mWebView.loadUrl("https://api.imgur.com/oauth2/authorize?client_id=" + AppConstants.IMGUR_CLIENT_ID + "&response_type=token");
     }
 
     private void setupWebView() {
@@ -70,7 +71,11 @@ public class ImgurLoginActivity extends AppCompatActivity {
                     m.find();
                     long expiresIn = Long.valueOf(m.group(1));
 
-                    ImgurAuthorization.saveRefreshToken(getApplicationContext(), refreshToken, accessToken, expiresIn);
+                    m = usernamePattern.matcher(url);
+                    m.find();
+                    String username = m.group(1);
+
+                    ImgurAuthorization.saveRefreshToken(getApplicationContext(), refreshToken, accessToken, expiresIn, username);
 
                     runOnUiThread(new Runnable() {
                         @Override
@@ -78,7 +83,6 @@ public class ImgurLoginActivity extends AppCompatActivity {
                             Toast.makeText(ImgurLoginActivity.this, "Logged in", Toast.LENGTH_SHORT).show();
                             Intent i = new Intent();
                             setResult(RESULT_OK, i);
-                            Log.i(TAG, "Finishing login");
                             finish();
                         }
                     });

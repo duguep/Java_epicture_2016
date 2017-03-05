@@ -101,7 +101,7 @@ public abstract class ImgurUploadTask extends AsyncTask<Void, Void, String> {
         return count;
     }
 
-    protected String onInput(InputStream in) throws Exception {
+    protected String  onInput(InputStream in) throws Exception {
         StringBuilder sb = new StringBuilder();
         Scanner scanner = new Scanner(in);
         while (scanner.hasNext()) {
